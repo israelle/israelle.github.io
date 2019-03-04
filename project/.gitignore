@@ -1,0 +1,10 @@
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+/vendor
+
+# IDEs and editors
+.idea
