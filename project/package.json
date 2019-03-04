@@ -9,5 +9,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "dependencies": {
+    "aframe": "^0.9.0",
+    "express": "^4.16.4",
+    "three": "^0.102.1",
+    "vue": "^2.6.8",
+    "webvr-polyfill": "^0.10.10"
   }
 }
