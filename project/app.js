@@ -1,9 +1,10 @@
-var http = require('http');
+var app = require('express')();
+var http = require('http').Server(app);
 
-var server = http.createServer(function(req, res) {
-    res.writeHead(200, {"Content-Type": "text/html"});
-    res.end('Bienvenue sur notre page d\'accueil !</p>');
-
+app.get('/', function(req, res){
+  res.sendfile('./test.html');
 });
-server.listen(8080, 'localhost', () => {
-console.log("Server running at localhost")});
+
+http.listen(3000, function(){
+  console.log('listening on *:3000');
+})
