@@ -10,7 +10,7 @@ app.get('/camera', function(req, res){
 
   var path = require('path');
   //console.log(path.resolve(__dirname+'/../three.js/examples/basic.html'));
-res.sendFile(path.resolve(__dirname+'/three.js/examples/basic.html'));
+res.sendFile(path.resolve(__dirname+'/aframe/examples/marker-camera.html'));
 
 });
 
