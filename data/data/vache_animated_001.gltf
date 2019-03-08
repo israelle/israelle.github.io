@@ -1,0 +1,323 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 984,
+            "max" : [
+                557
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 558,
+            "max" : [
+                1.0569489002227783,
+                1.7999999523162842,
+                1.4000005722045898
+            ],
+            "min" : [
+                -1.0569490194320679,
+                -2.799999713897705,
+                -1.0000003576278687
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 558,
+            "max" : [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min" : [
+                -1.0,
+                -1.0,
+                -1.0
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 3,
+            "max" : [
+                4.166666666666667
+            ],
+            "min" : [
+                0.0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 9,
+            "max" : [
+                0.0,
+                0.0,
+                -0.0
+            ],
+            "min" : [
+                0.0,
+                0.0,
+                -0.0
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 101,
+            "max" : [
+                4.166666666666667
+            ],
+            "min" : [
+                0.0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 101,
+            "max" : [
+                0.0,
+                1.0,
+                -0.0,
+                1.0
+            ],
+            "min" : [
+                0.0,
+                -0.9994896650314331,
+                -0.0,
+                -1.6292068494294654e-07
+            ],
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5126,
+            "count" : 3,
+            "max" : [
+                4.166666666666667
+            ],
+            "min" : [
+                0.0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 8,
+            "componentType" : 5126,
+            "count" : 9,
+            "max" : [
+                0.4999997615814209,
+                0.5,
+                0.7499996423721313
+            ],
+            "min" : [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "type" : "VEC3"
+        }
+    ],
+    "animations" : [
+        {
+            "channels" : [
+                {
+                    "sampler" : 0,
+                    "target" : {
+                        "node" : 1,
+                        "path" : "translation"
+                    }
+                },
+                {
+                    "sampler" : 1,
+                    "target" : {
+                        "node" : 1,
+                        "path" : "rotation"
+                    }
+                },
+                {
+                    "sampler" : 2,
+                    "target" : {
+                        "node" : 1,
+                        "path" : "scale"
+                    }
+                }
+            ],
+            "name" : "CubeAction.001",
+            "samplers" : [
+                {
+                    "input" : 3,
+                    "interpolation" : "CUBICSPLINE",
+                    "output" : 4
+                },
+                {
+                    "input" : 5,
+                    "interpolation" : "LINEAR",
+                    "output" : 6
+                },
+                {
+                    "input" : 7,
+                    "interpolation" : "CUBICSPLINE",
+                    "output" : 8
+                }
+            ]
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 1968,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6696,
+            "byteOffset" : 1968,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6696,
+            "byteOffset" : 8664,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 12,
+            "byteOffset" : 15360
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 108,
+            "byteOffset" : 15372
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 404,
+            "byteOffset" : 15480
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1616,
+            "byteOffset" : 15884
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 12,
+            "byteOffset" : 17500
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 108,
+            "byteOffset" : 17512
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 17620,
+            "uri" : "vache_animated_001.bin"
+        }
+    ],
+    "materials" : [
+        {
+            "name" : "Material",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.6400000190734865,
+                    0.6400000190734865,
+                    0.6400000190734865,
+                    1.0
+                ],
+                "metallicFactor" : 0.0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cube",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1
+                    },
+                    "indices" : 0,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "name" : "Camera",
+            "rotation" : [
+                0.483536034822464,
+                0.33687159419059753,
+                -0.20870360732078552,
+                0.7804827094078064
+            ],
+            "translation" : [
+                7.481131553649902,
+                5.34366512298584,
+                6.5076398849487305
+            ]
+        },
+        {
+            "mesh" : 0,
+            "name" : "Cube",
+            "scale" : [
+                0.4999997615814209,
+                0.5,
+                0.7499996423721313
+            ]
+        },
+        {
+            "name" : "Lamp",
+            "rotation" : [
+                0.16907575726509094,
+                0.7558802962303162,
+                -0.27217137813568115,
+                0.570947527885437
+            ],
+            "scale" : [
+                1.0,
+                1.0,
+                0.9999999403953552
+            ],
+            "translation" : [
+                4.076245307922363,
+                5.903861999511719,
+                -1.0054539442062378
+            ]
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                1,
+                2,
+                0
+            ]
+        }
+    ]
+}
