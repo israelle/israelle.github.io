@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-
 <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
 <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
 <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
@@ -10,33 +9,75 @@
 	<br/>
 	Contact me any time at <a href='https://twitter.com/jerome_etienne' target='_blank'>@Maehdi49</a>
 </div>
-	<a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false; 'id="gltfModel">
-
-      <a-entity light="type: ambient; intensity: 4;"></a-entity>
+	<a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false;'>
+      <a-entity light="type: ambient; intensity: 2;"></a-entity>
         <a-marker type='pattern' url='https://maehdi49.github.io/data/data/patt.epsi'>
-          <a-gltf-model src="https://maehdi49.github.io/data/data/vache.gltf" scale="2.5 2.5 2.5" 
-          position="0 0.75 0"  rotation="90 0 180" >
-          <!-- <a-animation attribute="rotation" dur="3000" from="90 -180 0" to="90 180 0" repeat ="indefinite" easing="linear">
-            </a-animation> -->
+          <!-- Scale 0.5 est la bonne taille pour mobile -->
+          <a-gltf-model src="/vache_color_001.gltf" scale="2.5 2.5 2.5" 
+          position="0 0.75 0"  rotation="90 180 0" animation-mixer="CubeAction.001">
+          <a-animation attribute="material.color" to="red" dur="1000"></a-animation>
         </a-gltf-model>
+        </a-entity>
       </a-marker>
-      <a-camera-static /> 
-      </a-scene>
-
-<a-scene embedded arjs='sourceType: webcam;'>
-	
-	<a-marker-camera preset='hiro'></a-marker-camera>
-	<a-gltf-model src="vache.gltf"></a-gltf-model>
-	<!-- <a-scene embedded arjs='sourceType: image; sourceUrl:../../data/images/armchair.jpg;'> -->
-	</a-scene>
+    <a-camera-static /> 
+    </a-scene>
 </body>
 
 <script type="text/javascript">
 var model;
-model = document.getElementById(gltfModel);
-console.log(model);
-if (model){
-  model.rotation.x += 1;
+
+var m = document.querySelector("a-marker")
+var gltf; 
+
+// ICI je récupère le fichier qui est stocké dans le dossier public (dossier public = nouveauté)
+// Je stocke son contenu dans gltf
+   var client = new XMLHttpRequest();
+client.open('GET', '/vache_color_001.gltf');
+client.onreadystatechange = function() {
+  gltf = client.responseText;
+  //console.log(gltf);
 }
+client.send();
+
+
+
+m.addEventListener("markerFound", (e)=>{
+
+
+  if(gltf !== undefined){
+    // Je parse le gltf pour l'utiliser comme un objet
+    gObject = JSON.parse(gltf);
+    // Je sette les valeurs RGB en dur ( C'est la que tu interviens)
+    gObject.materials[0].pbrMetallicRoughness.baseColorFactor[0] = 255;
+    gObject.materials[0].pbrMetallicRoughness.baseColorFactor[1] = 102;
+    gObject.materials[0].pbrMetallicRoughness.baseColorFactor[2] = 255;
+    gObject.materials[0].pbrMetallicRoughness.baseColorFactor[3] = 1;
+
+// J'update le GLTF. J'ai encore un bug ou deux ici pour l'update du fichier. comportement attendu : 
+// Je charge la page et mes couleurs dans le glft on des valeurs du type 0.63235956195 
+// Le fait de passer dans le marqueur modifie le gltf du fichier vache_color_001.gltf dans public
+// au chargement de la page les couleurs auraient du être modifiées, ce n'est pas le cas. je m'en occupe demain 
+    updateGLTF(gObject);
+
+// Modifier la source du GLTF en live OU Modifier les couleurs en fonction des couleurs récupérée avant d'afficher le modèle.
+  }
+})
+
+m.addEventListener("markerLost", (e)=>{
+   console.log("lost")
+})
+
+function updateGLTF(gObject){
+  fetch('/updategltf', {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(gObject)
+  });
+ 
+}
+
 </script>
 </html>
