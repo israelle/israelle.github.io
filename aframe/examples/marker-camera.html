@@ -10,12 +10,11 @@
 	Contact me any time at <a href='https://twitter.com/jerome_etienne' target='_blank'>@Maehdi49</a>
 </div>
 	<a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false;'>
-      <a-entity light="type: ambient; intensity: 2;"></a-entity>
+      <a-entity light="type: ambient; intensity: 1;"></a-entity>
         <a-marker type='pattern' url='https://maehdi49.github.io/data/data/patt.epsi'>
           <!-- Scale 0.5 est la bonne taille pour mobile -->
           <a-gltf-model src="/vache_color_001.gltf" scale="2.5 2.5 2.5" 
-          position="0 0.75 0"  rotation="90 180 0" animation-mixer="CubeAction.001">
-          <a-animation attribute="material.color" to="red" dur="1000"></a-animation>
+          position="0 0.75 0"  rotation="90 180 0" animation-mixer="CubeAction.001" id="gtlfModelId">
         </a-gltf-model>
         </a-entity>
       </a-marker>
@@ -27,6 +26,8 @@
 var model;
 
 var m = document.querySelector("a-marker")
+var gltf_html = document.getElementById("gtlfModelId")
+console.log(gltf_html.src);
 var gltf; 
 
 // ICI je récupère le fichier qui est stocké dans le dossier public (dossier public = nouveauté)
@@ -47,19 +48,27 @@ m.addEventListener("markerFound", (e)=>{
   if(gltf !== undefined){
     // Je parse le gltf pour l'utiliser comme un objet
     gObject = JSON.parse(gltf);
+    console.log(gObject);
     // Je sette les valeurs RGB en dur ( C'est la que tu interviens)
-    gObject.materials[0].pbrMetallicRoughness.baseColorFactor[0] = 255;
-    gObject.materials[0].pbrMetallicRoughness.baseColorFactor[1] = 102;
-    gObject.materials[0].pbrMetallicRoughness.baseColorFactor[2] = 255;
-    gObject.materials[0].pbrMetallicRoughness.baseColorFactor[3] = 1;
+    // Pour utiliser les couleurs dans le gltf il faut convertir le sRGB en linear
+    // Exemple : si je prend le RGB (5,16,61) et que je convertis le 5 la formule est : ((5/255)^2.2)^0.4545
+    // En code : Math.pow(Math.pow((VALUE TO CONVERT/255),2.2),0.4545); // Faire la meme chose pour le 16 et le 61
+    gObject.materials[1].pbrMetallicRoughness.baseColorFactor[0] = Math.pow(Math.pow((9/255),2.2),0.4545);
+    gObject.materials[1].pbrMetallicRoughness.baseColorFactor[1] =  Math.pow(Math.pow((179/255),2.2),0.4545);
+    gObject.materials[1].pbrMetallicRoughness.baseColorFactor[2] = Math.pow(Math.pow((188/255),2.2),0.4545);
+    gObject.materials[1].pbrMetallicRoughness.baseColorFactor[3] = 1.0;
 
-// J'update le GLTF. J'ai encore un bug ou deux ici pour l'update du fichier. comportement attendu : 
-// Je charge la page et mes couleurs dans le glft on des valeurs du type 0.63235956195 
-// Le fait de passer dans le marqueur modifie le gltf du fichier vache_color_001.gltf dans public
-// au chargement de la page les couleurs auraient du être modifiées, ce n'est pas le cas. je m'en occupe demain 
-    updateGLTF(gObject);
 
-// Modifier la source du GLTF en live OU Modifier les couleurs en fonction des couleurs récupérée avant d'afficher le modèle.
+// La fonction updateGltf va mettre à jour le fichier cache_color_002.gltf avec les couleurs récupérées ci dessus. 
+// Un promesse lui est liée. Elle met a jour l'HTML en settant la source de la balise html a-gltf-model au modèle modifié (le 002)
+// et recharge ce nouveau modèle avec les nouvelles couleurs. 
+     updateGLTF(gObject);
+
+
+// Du coup Israelle, tu dois faire en sorte de récupérer la couleur sur le papier pour passer les valeurs récupérées dans les lignes 56 57 et 58.
+// Fies toi a l'exemple en commentaire juste au dessus. Si tu t'en sors pas tu peux me MP ! BON COURAGE, ON Y EST PRESQUE 
+
+
   }
 })
 
@@ -75,6 +84,8 @@ function updateGLTF(gObject){
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(gObject)
+  }).then(function(){
+    gltf_html.setAttribute("src","/vache_color_002.gltf");
   });
  
 }
