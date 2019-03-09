@@ -22,7 +22,7 @@ res.sendFile(path.resolve(__dirname+'/aframe/examples/marker-camera.html'));
 
 app.put('/updategltf', function(req, res){
   const data = req.body;
-  fs.writeFileSync("./public/vache_color_001.gltf", JSON.stringify(data), {encoding: 'utf-8'});
+  fs.writeFileSync("./public/vache_color_002.gltf", JSON.stringify(data), {encoding: 'utf-8'});
   res.sendStatus(200);
 });
 app.listen(3000, function(){
